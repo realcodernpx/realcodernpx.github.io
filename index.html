@@ -249,12 +249,126 @@ alert("Wrong OTP");
 }
 
 // Course Details
+const courseData = {
+
+excel:{
+title:"EXCEL",
+salary:"₹25,000 – ₹80,000 / Month",
+jobs:"Data Analyst, MIS Executive, Office Admin",
+formulas:[
+"SUM()", "AVERAGE()", "IF()", "VLOOKUP()", "HLOOKUP()", 
+"XLOOKUP()", "COUNT()", "COUNTA()", "COUNTIF()", "COUNTIFS()",
+"SUMIF()", "SUMIFS()", "INDEX()", "MATCH()", "LEFT()",
+"RIGHT()", "MID()", "LEN()", "TRIM()", "ROUND()"
+]
+},
+
+basic:{
+title:"BASIC COMPUTER",
+salary:"₹12,000 – ₹25,000 / Month",
+jobs:"Computer Operator, Office Assistant",
+formulas:[
+"MS Word Formatting", "Excel Basics", "PowerPoint Slides",
+"File Management", "Internet Usage", "Typing Skills"
+]
+},
+
+advance:{
+title:"ADVANCE EXCEL",
+salary:"₹40,000 – ₹1,20,000 / Month",
+jobs:"Business Analyst, Financial Analyst",
+formulas:[
+"Pivot Table", "Macros", "VBA", "Power Query",
+"Dashboard Creation", "Data Modeling"
+]
+},
+
+sql:{
+title:"SQL",
+salary:"₹35,000 – ₹1,50,000 / Month",
+jobs:"Database Developer, Data Engineer",
+formulas:[
+"SELECT", "WHERE", "JOIN", "GROUP BY",
+"HAVING", "ORDER BY", "INSERT", "UPDATE", "DELETE"
+]
+},
+
+python:{
+title:"PYTHON",
+salary:"₹40,000 – ₹2,00,000 / Month",
+jobs:"Python Developer, AI Engineer, Data Scientist",
+formulas:[
+"print()", "if-else", "for loop", "while loop",
+"list()", "dict()", "functions", "classes",
+"pandas", "numpy"
+]
+},
+
+web:{
+title:"HTML CSS JS",
+salary:"₹30,000 – ₹1,50,000 / Month",
+jobs:"Web Developer, Frontend Developer",
+formulas:[
+"<html>", "<div>", "<form>", "CSS Flexbox",
+"CSS Grid", "JavaScript DOM",
+"Event Listener", "API Fetch"
+]
+}
+
+};
+
+
+// Show Course
 function showCourse(name){
-document.getElementById("courseDetails").innerHTML=
-"<h3>"+name.toUpperCase()+" Course Full Details</h3><p>Complete professional training with uses, benefits, jobs & salary included. High demand skill in market. Salary range ₹20,000 to ₹1,00,000+ depending on experience. Freelance & international opportunities available. Career growth fast & secure.</p>";
+
+let course = courseData[name];
+
+let formulaList = "";
+
+course.formulas.forEach(f=>{
+formulaList += `
+<div style="display:flex;justify-content:space-between;align-items:center;margin:8px 0;">
+<span>${f}</span>
+<span class="icon" onclick="toggleDetails(this)">➕</span>
+</div>
+<div class="extraDetails" style="display:none;font-size:14px;color:#ccc;margin-bottom:10px;">
+Detailed explanation of ${f}. Practical examples included. High demand skill.
+</div>
+`;
+});
+
+document.getElementById("courseDetails").innerHTML = `
+<h3>${course.title} Full Details</h3>
+
+<h4>Top Formulas / Topics:</h4>
+${formulaList}
+
+<h4 style="margin-top:20px;">💼 Jobs:</h4>
+<p>${course.jobs}</p>
+
+<h4 style="margin-top:15px;">💰 Salary:</h4>
+<p>${course.salary}</p>
+`;
+}
+
+
+// Toggle More Details
+function toggleDetails(icon){
+let details = icon.parentElement.nextElementSibling;
+
+if(details.style.display === "none"){
+details.style.display = "block";
+icon.innerHTML = "➖";
+icon.style.transform = "rotate(360deg)";
+icon.style.transition = "0.4s";
+}else{
+details.style.display = "none";
+icon.innerHTML = "➕";
+}
 }
 
 </script>
 </body>
 </html>
+
 
