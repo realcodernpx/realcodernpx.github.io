@@ -4,6 +4,7 @@
 <title>𝓣𝓗𝓔 𝓡𝓔𝓐𝓛 𝓒𝓞𝓓𝓔𝓡 𝓧</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="KcUlrDflAhWVYNasTi-_bYJKO90u9-xGQrDKCKy5buY" />
+  
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
 <!-- PDF + Excel CDN -->
@@ -12,7 +13,6 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
 font-family:'Montserrat',sans-serif;
 background:
@@ -23,7 +23,6 @@ background-position:center;
 background-attachment:fixed;
 color:#f5f5f5;
 }
-
 header{
 text-align:center;
 padding:60px 20px;
@@ -35,21 +34,18 @@ background:linear-gradient(90deg,#ff512f,#dd2476);
 -webkit-text-fill-color:transparent;
 text-shadow:0 0 25px rgba(255,0,0,0.7);
 }
-
 nav{
 text-align:center;
 padding:18px;
 background:rgba(255,255,255,0.05);
 backdrop-filter:blur(8px);
 }
-
 nav a{
 color:#ffffff;
 margin:20px;
 text-decoration:none;
 font-weight:600;
 }
-
 section{
 padding:50px 30px;
 margin:30px;
@@ -58,12 +54,7 @@ backdrop-filter:blur(10px);
 border-radius:18px;
 box-shadow:0 0 30px rgba(255,0,0,0.3);
 }
-
-.login-box{
-max-width:450px;
-margin:auto;
-}
-
+.login-box{max-width:450px;margin:auto;}
 input,select{
 width:100%;
 padding:12px;
@@ -73,7 +64,6 @@ border-radius:8px;
 background:rgba(255,255,255,0.1);
 color:white;
 }
-
 button{
 padding:12px;
 width:100%;
@@ -85,7 +75,6 @@ font-weight:bold;
 cursor:pointer;
 margin-top:10px;
 }
-
 .course-box{
 border:1px solid rgba(255,255,255,0.3);
 padding:15px;
@@ -94,7 +83,6 @@ border-radius:8px;
 cursor:pointer;
 text-align:center;
 }
-
 footer{
 text-align:center;
 padding:25px;
@@ -113,39 +101,32 @@ color:#aaa;
 <a href="#converter">Converter</a>
 <a href="#login">Login</a>
 <a href="#courses">Courses</a>
+<a href="#contact">Contact</a>
 </nav>
 
-<!-- ================= CONVERTER SECTION ================= -->
-
+<!-- CONVERTER -->
 <section id="converter">
 <h2>File Converter Tools</h2>
 <div class="login-box">
-
 <h3>Image to PDF</h3>
 <input type="file" id="imageInput" accept="image/*">
 <button onclick="convertImageToPDF()">Convert & Download PDF</button>
-
 <hr style="margin:25px 0; border:1px solid rgba(255,255,255,0.2);">
-
 <h3>Excel to PDF</h3>
 <input type="file" id="excelInput" accept=".xlsx,.xls">
 <button onclick="convertExcelToPDF()">Convert & Download PDF</button>
-
 </div>
 </section>
 
-<!-- ================= LOGIN SECTION ================= -->
-
+<!-- LOGIN -->
 <section id="login">
 <h2>Login System</h2>
 <div class="login-box">
-
 <select id="gender">
 <option value="">Gender</option>
 <option>Male</option>
 <option>Female</option>
 </select>
-
 <select id="state">
 <option value="">Select State</option>
 <option>Uttar Pradesh</option>
@@ -153,7 +134,6 @@ color:#aaa;
 <option>Haryana</option>
 <option>Bihar</option>
 </select>
-
 <input type="email" id="email" placeholder="Enter Gmail">
 <button onclick="sendOTP()">Send OTP</button>
 
@@ -162,20 +142,39 @@ color:#aaa;
 <input type="hidden" id="generatedOTP">
 <button onclick="verifyOTP()">Verify OTP</button>
 </div>
-
 </div>
 </section>
 
-<!-- ================= COURSES ================= -->
-
+<!-- COURSES -->
 <section id="courses" style="display:none;">
 <h2>Available Courses</h2>
-<div class="course-box">Excel</div>
-<div class="course-box">Basic Computer</div>
-<div class="course-box">Advance Excel</div>
-<div class="course-box">SQL</div>
-<div class="course-box">Python</div>
-<div class="course-box">HTML CSS JS</div>
+<div class="course-box" onclick="showCourse('excel')">Excel</div>
+<div class="course-box" onclick="showCourse('basic')">Basic Computer</div>
+<div class="course-box" onclick="showCourse('advance')">Advance Excel</div>
+<div class="course-box" onclick="showCourse('sql')">SQL</div>
+<div class="course-box" onclick="showCourse('python')">Python</div>
+<div class="course-box" onclick="showCourse('web')">HTML CSS JS</div>
+<div id="courseDetails" style="margin-top:30px;"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>Contact Me</h2>
+<div class="login-box">
+<button onclick="openWhatsApp()">Chat on WhatsApp</button>
+
+<a href="https://instagram.com/therealcoderx" target="_blank">
+<button>Instagram - therealcoderx</button>
+</a>
+
+<a href="https://youtube.com/@therealcoderx" target="_blank">
+<button>YouTube - @therealcoderx</button>
+</a>
+
+<a href="mailto:therealcoderx.html@gmail.com">
+<button>Email Me</button>
+</a>
+</div>
 </section>
 
 <footer>
@@ -184,73 +183,63 @@ color:#aaa;
 
 <script>
 
-// IMAGE TO PDF
+// WhatsApp
+function openWhatsApp(){
+window.open("https://wa.me/917037870518","_blank");
+}
+
+// Image to PDF
 async function convertImageToPDF(){
-const file = document.getElementById("imageInput").files[0];
-if(!file){ alert("Select image first"); return; }
-
-const { jsPDF } = window.jspdf;
-const pdf = new jsPDF();
-
-const reader = new FileReader();
-reader.onload = function(e){
+const file=document.getElementById("imageInput").files[0];
+if(!file){alert("Select image first");return;}
+const { jsPDF }=window.jspdf;
+const pdf=new jsPDF();
+const reader=new FileReader();
+reader.onload=function(e){
 pdf.addImage(e.target.result,'JPEG',10,10,180,160);
-pdf.save("image-converted.pdf");
+pdf.save("image.pdf");
 };
 reader.readAsDataURL(file);
 }
 
-// EXCEL TO PDF
+// Excel to PDF
 function convertExcelToPDF(){
-const file = document.getElementById("excelInput").files[0];
-if(!file){ alert("Select Excel file first"); return; }
-
-const reader = new FileReader();
-reader.onload = function(e){
-const data = new Uint8Array(e.target.result);
-const workbook = XLSX.read(data,{type:'array'});
-const sheet = workbook.Sheets[workbook.SheetNames[0]];
-const json = XLSX.utils.sheet_to_json(sheet,{header:1});
-
-const { jsPDF } = window.jspdf;
-const pdf = new jsPDF();
-let y = 10;
-
+const file=document.getElementById("excelInput").files[0];
+if(!file){alert("Select Excel file first");return;}
+const reader=new FileReader();
+reader.onload=function(e){
+const data=new Uint8Array(e.target.result);
+const workbook=XLSX.read(data,{type:'array'});
+const sheet=workbook.Sheets[workbook.SheetNames[0]];
+const json=XLSX.utils.sheet_to_json(sheet,{header:1});
+const { jsPDF }=window.jspdf;
+const pdf=new jsPDF();
+let y=10;
 json.forEach(row=>{
 pdf.text(row.join(" | "),10,y);
 y+=8;
 });
-
-pdf.save("excel-converted.pdf");
+pdf.save("excel.pdf");
 };
 reader.readAsArrayBuffer(file);
 }
 
-// OTP SYSTEM
-function generateOTP(length = 6){
-let digits='0123456789';
-let otp='';
-for(let i=0;i<length;i++){
-otp+=digits[Math.floor(Math.random()*digits.length)];
+// OTP
+function generateOTP(){
+return Math.floor(100000+Math.random()*900000);
 }
-return otp;
-}
-
 function sendOTP(){
 const email=document.getElementById("email").value;
-if(!email){ alert("Enter Gmail"); return; }
-
+if(!email){alert("Enter Gmail");return;}
 const otp=generateOTP();
 document.getElementById("generatedOTP").value=otp;
 alert("Your OTP: "+otp);
 document.getElementById("otpBox").style.display="block";
 }
-
 function verifyOTP(){
 const entered=document.getElementById("otpInput").value;
 const generated=document.getElementById("generatedOTP").value;
-
-if(entered===generated){
+if(entered==generated){
 alert("Login Successful!");
 document.getElementById("courses").style.display="block";
 document.getElementById("otpBox").style.display="none";
@@ -259,8 +248,12 @@ alert("Wrong OTP");
 }
 }
 
-</script>
+// Course Details
+function showCourse(name){
+document.getElementById("courseDetails").innerHTML=
+"<h3>"+name.toUpperCase()+" Course Full Details</h3><p>Complete professional training with uses, benefits, jobs & salary included. High demand skill in market. Salary range ₹20,000 to ₹1,00,000+ depending on experience. Freelance & international opportunities available. Career growth fast & secure.</p>";
+}
 
+</script>
 </body>
 </html>
-
