@@ -7,7 +7,6 @@
   
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
-<!-- PDF + Excel CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
@@ -15,8 +14,7 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
 font-family:'Montserrat',sans-serif;
-background:
-linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),
+background:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),
 url('https://images.unsplash.com/photo-1546182990-dffeafbe841d');
 background-size:cover;
 background-position:center;
@@ -34,21 +32,10 @@ background:linear-gradient(90deg,#ff512f,#dd2476);
 -webkit-text-fill-color:transparent;
 text-shadow:0 0 25px rgba(255,0,0,0.7);
 }
-nav{
-text-align:center;
-padding:18px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(8px);
-}
-nav a{
-color:#ffffff;
-margin:20px;
-text-decoration:none;
-font-weight:600;
-}
+nav{text-align:center;padding:18px;background:rgba(255,255,255,0.05);}
+nav a{color:#fff;margin:20px;text-decoration:none;font-weight:600;}
 section{
-padding:50px 30px;
-margin:30px;
+padding:50px 30px;margin:30px;
 background:rgba(255,255,255,0.06);
 backdrop-filter:blur(10px);
 border-radius:18px;
@@ -56,39 +43,38 @@ box-shadow:0 0 30px rgba(255,0,0,0.3);
 }
 .login-box{max-width:450px;margin:auto;}
 input,select{
-width:100%;
-padding:12px;
-margin:10px 0;
-border:none;
-border-radius:8px;
-background:rgba(255,255,255,0.1);
-color:white;
+width:100%;padding:12px;margin:10px 0;
+border:none;border-radius:8px;
+background:rgba(255,255,255,0.1);color:white;
 }
 button{
-padding:12px;
-width:100%;
-border:none;
-border-radius:8px;
+padding:12px;width:100%;
+border:none;border-radius:8px;
 background:linear-gradient(90deg,#ff512f,#dd2476);
-color:white;
-font-weight:bold;
-cursor:pointer;
-margin-top:10px;
+color:white;font-weight:bold;cursor:pointer;margin-top:10px;
 }
 .course-box{
 border:1px solid rgba(255,255,255,0.3);
-padding:15px;
-margin:12px;
-border-radius:8px;
-cursor:pointer;
-text-align:center;
+padding:15px;margin:12px;border-radius:8px;
+cursor:pointer;text-align:center;
 }
-footer{
-text-align:center;
-padding:25px;
-margin-top:40px;
-background:#0a0a15;
-color:#aaa;
+footer{text-align:center;padding:25px;margin-top:40px;background:#0a0a15;color:#aaa;}
+
+.icon{
+cursor:pointer;
+transition:0.4s;
+margin-left:10px;
+display:inline-block;
+}
+.icon:hover{
+transform:rotate(180deg);
+color:#ff4d6d;
+}
+.extra{
+display:none;
+font-size:14px;
+color:#ccc;
+margin-bottom:8px;
 }
 </style>
 </head>
@@ -104,49 +90,7 @@ color:#aaa;
 <a href="#contact">Contact</a>
 </nav>
 
-<!-- CONVERTER -->
-<section id="converter">
-<h2>File Converter Tools</h2>
-<div class="login-box">
-<h3>Image to PDF</h3>
-<input type="file" id="imageInput" accept="image/*">
-<button onclick="convertImageToPDF()">Convert & Download PDF</button>
-<hr style="margin:25px 0; border:1px solid rgba(255,255,255,0.2);">
-<h3>Excel to PDF</h3>
-<input type="file" id="excelInput" accept=".xlsx,.xls">
-<button onclick="convertExcelToPDF()">Convert & Download PDF</button>
-</div>
-</section>
-
-<!-- LOGIN -->
-<section id="login">
-<h2>Login System</h2>
-<div class="login-box">
-<select id="gender">
-<option value="">Gender</option>
-<option>Male</option>
-<option>Female</option>
-</select>
-<select id="state">
-<option value="">Select State</option>
-<option>Uttar Pradesh</option>
-<option>Delhi</option>
-<option>Haryana</option>
-<option>Bihar</option>
-</select>
-<input type="email" id="email" placeholder="Enter Gmail">
-<button onclick="sendOTP()">Send OTP</button>
-
-<div id="otpBox" style="display:none;">
-<input type="text" id="otpInput" placeholder="Enter OTP">
-<input type="hidden" id="generatedOTP">
-<button onclick="verifyOTP()">Verify OTP</button>
-</div>
-</div>
-</section>
-
-<!-- COURSES -->
-<section id="courses" style="display:none;">
+<section id="courses">
 <h2>Available Courses</h2>
 <div class="course-box" onclick="showCourse('excel')">Excel</div>
 <div class="course-box" onclick="showCourse('basic')">Basic Computer</div>
@@ -157,103 +101,92 @@ color:#aaa;
 <div id="courseDetails" style="margin-top:30px;"></div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-<h2>Contact Me</h2>
-<div class="login-box">
-<button onclick="openWhatsApp()">Chat on WhatsApp</button>
-
-<a href="https://instagram.com/therealcoderx" target="_blank">
-<button>Instagram - therealcoderx</button>
-</a>
-
-<a href="https://youtube.com/@therealcoderx" target="_blank">
-<button>YouTube - @therealcoderx</button>
-</a>
-
-<a href="mailto:therealcoderx.html@gmail.com">
-<button>Email Me</button>
-</a>
-</div>
-</section>
-
 <footer>
 © 2026 THE REAL CODER X | All Rights Reserved
 </footer>
 
 <script>
 
-// WhatsApp
-function openWhatsApp(){
-window.open("https://wa.me/917037870518","_blank");
+// 100 auto topics generator
+function generateTopics(base){
+let arr=[];
+for(let i=1;i<=100;i++){
+arr.push(base+" Topic / Formula "+i);
+}
+return arr;
 }
 
-// Image to PDF
-async function convertImageToPDF(){
-const file=document.getElementById("imageInput").files[0];
-if(!file){alert("Select image first");return;}
-const { jsPDF }=window.jspdf;
-const pdf=new jsPDF();
-const reader=new FileReader();
-reader.onload=function(e){
-pdf.addImage(e.target.result,'JPEG',10,10,180,160);
-pdf.save("image.pdf");
+const courses={
+excel:{
+salary:"₹25,000 – ₹80,000 / Month",
+jobs:"Data Analyst, MIS Executive, Accountant",
+topics:generateTopics("Excel")
+},
+basic:{
+salary:"₹12,000 – ₹25,000 / Month",
+jobs:"Computer Operator, Office Assistant",
+topics:generateTopics("Basic Computer")
+},
+advance:{
+salary:"₹40,000 – ₹1,20,000 / Month",
+jobs:"Business Analyst, Financial Analyst",
+topics:generateTopics("Advance Excel")
+},
+sql:{
+salary:"₹35,000 – ₹1,50,000 / Month",
+jobs:"Database Developer, Data Engineer",
+topics:generateTopics("SQL")
+},
+python:{
+salary:"₹40,000 – ₹2,00,000 / Month",
+jobs:"Python Developer, AI Engineer",
+topics:generateTopics("Python")
+},
+web:{
+salary:"₹30,000 – ₹1,50,000 / Month",
+jobs:"Web Developer, Frontend Developer",
+topics:generateTopics("Web Development")
+}
 };
-reader.readAsDataURL(file);
-}
 
-// Excel to PDF
-function convertExcelToPDF(){
-const file=document.getElementById("excelInput").files[0];
-if(!file){alert("Select Excel file first");return;}
-const reader=new FileReader();
-reader.onload=function(e){
-const data=new Uint8Array(e.target.result);
-const workbook=XLSX.read(data,{type:'array'});
-const sheet=workbook.Sheets[workbook.SheetNames[0]];
-const json=XLSX.utils.sheet_to_json(sheet,{header:1});
-const { jsPDF }=window.jspdf;
-const pdf=new jsPDF();
-let y=10;
-json.forEach(row=>{
-pdf.text(row.join(" | "),10,y);
-y+=8;
-});
-pdf.save("excel.pdf");
-};
-reader.readAsArrayBuffer(file);
-}
-
-// OTP
-function generateOTP(){
-return Math.floor(100000+Math.random()*900000);
-}
-function sendOTP(){
-const email=document.getElementById("email").value;
-if(!email){alert("Enter Gmail");return;}
-const otp=generateOTP();
-document.getElementById("generatedOTP").value=otp;
-alert("Your OTP: "+otp);
-document.getElementById("otpBox").style.display="block";
-}
-function verifyOTP(){
-const entered=document.getElementById("otpInput").value;
-const generated=document.getElementById("generatedOTP").value;
-if(entered==generated){
-alert("Login Successful!");
-document.getElementById("courses").style.display="block";
-document.getElementById("otpBox").style.display="none";
-}else{
-alert("Wrong OTP");
-}
-}
-
-// Course Details
 function showCourse(name){
-document.getElementById("courseDetails").innerHTML=
-"<h3>"+name.toUpperCase()+" Course Full Details</h3><p>Complete professional training with uses, benefits, jobs & salary included. High demand skill in market. Salary range ₹20,000 to ₹1,00,000+ depending on experience. Freelance & international opportunities available. Career growth fast & secure.</p>";
+let c=courses[name];
+let html=`<h3>${name.toUpperCase()} Course Full Details</h3>`;
+
+html+="<h4>📘 100 Topics / Formulas:</h4>";
+
+c.topics.forEach(t=>{
+html+=`
+<div>
+<span>${t}</span>
+<span class="icon" onclick="toggle(this)">🔽</span>
+<div class="extra">
+Detailed notes of ${t}. Practical examples included. High demand skill in market.
+</div>
+</div>
+`;
+});
+
+html+=`
+<h4 style="margin-top:20px;">💼 Jobs:</h4>
+<p>${c.jobs}</p>
+<h4>💰 Salary:</h4>
+<p>${c.salary}</p>
+`;
+
+document.getElementById("courseDetails").innerHTML=html;
+}
+
+function toggle(el){
+let d=el.nextElementSibling;
+if(d.style.display==="block"){
+d.style.display="none";
+}else{
+d.style.display="block";
+}
 }
 
 </script>
+
 </body>
 </html>
