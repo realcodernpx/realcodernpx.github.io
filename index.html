@@ -10,6 +10,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <style>
 
@@ -521,58 +522,7 @@ if(i === files.length-1) pdf.save("images.pdf");
 reader.readAsDataURL(file);
 });
 }
-
-function jpgToPng(){
-const file = document.getElementById('jpgFile').files[0];
-if(!file) return alert("Select JPG");
-
-const img = new Image();
-const reader = new FileReader();
-reader.onload = function(e){
-img.onload = function(){
-const canvas = document.createElement('canvas');
-canvas.width = img.width;
-canvas.height = img.height;
-canvas.getContext('2d').drawImage(img,0,0);
-canvas.toBlob(blob=>{
-downloadFile(blob,"converted.png","image/png");
-});
-}
-img.src = e.target.result;
-}
-reader.readAsDataURL(file);
-}
-
-function resizePhoto(){
-const file = document.getElementById('resizeImg').files[0];
-const width = document.getElementById('width').value;
-const height = document.getElementById('height').value;
-if(!file || !width || !height) return alert("Fill all fields");
-
-const img = new Image();
-const reader = new FileReader();
-reader.onload = function(e){
-img.onload = function(){
-const canvas = document.createElement('canvas');
-canvas.width = width;
-canvas.height = height;
-canvas.getContext('2d').drawImage(img,0,0,width,height);
-canvas.toBlob(blob=>{
-downloadFile(blob,"resized.png","image/png");
-});
-}
-img.src = e.target.result;
-}
-reader.readAsDataURL(file);
-}
-
-function generateQR(){
-const text = document.getElementById("qrText").value;
-if(!text) return alert("Enter text");
-document.getElementById("qrResult").innerHTML="";
-new QRCode(document.getElementById("qrResult"), text);
-}
-
+  
 function downloadFile(data, filename, type){
 const blob = new Blob([data], {type});
 const link = document.createElement('a');
@@ -804,7 +754,7 @@ document.getElementById("qrResult").innerHTML=
 // Word Counter
 function countWords(){
 let text=document.getElementById("wordText").value;
-let words=text.trim().split(/\s+/).length;
+let words=text.trim() ? text.trim().split(/\s+/).length : 0;
 document.getElementById("wordResult").innerText="Words: "+words;
 }
 
@@ -898,4 +848,5 @@ alert("Loaded");
 
 </body>
 </html>
+
 
