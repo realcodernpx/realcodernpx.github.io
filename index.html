@@ -744,11 +744,30 @@ pass+=chars.charAt(Math.floor(Math.random()*chars.length));
 document.getElementById("generatedPass").innerText=pass;
 }
 
-// QR Generator
-function generateQR(){
-let text=document.getElementById("qrText").value;
-document.getElementById("qrResult").innerHTML=
-`<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text}">`;
+// QR Download
+function downloadQR(){
+
+let img = document.getElementById("qrImage");
+
+if(!img){
+    alert("Generate QR first");
+    return;
+}
+
+let canvas = document.createElement("canvas");
+canvas.width = img.width;
+canvas.height = img.height;
+
+let ctx = canvas.getContext("2d");
+ctx.drawImage(img, 0, 0);
+
+canvas.toBlob(function(blob){
+    let link = document.createElement("a");
+    link.download = "qr.png";
+    link.href = URL.createObjectURL(blob);
+    link.click();
+}, "image/png");
+
 }
 
 // Word Counter
@@ -765,52 +784,96 @@ let speech=new SpeechSynthesisUtterance(text);
 speechSynthesis.speak(speech);
 }
 
-// JPG to PNG
+// JPG to PNG (Fixed)
 function jpgToPng(){
-let file=document.getElementById("jpgInput").files[0];
-let reader=new FileReader();
-reader.onload=function(e){
-let img=new Image();
-img.src=e.target.result;
-img.onload=function(){
-let canvas=document.createElement("canvas");
-canvas.width=img.width;
-canvas.height=img.height;
-let ctx=canvas.getContext("2d");
-ctx.drawImage(img,0,0);
-let link=document.createElement("a");
-link.download="converted.png";
-link.href=canvas.toDataURL("image/png");
-link.click();
-};
-};
-reader.readAsDataURL(file);
+
+let file = document.getElementById("jpgInput").files[0];
+
+if(!file){
+    alert("Please select JPG image first");
+    return;
 }
 
-// Resize Photo
+if(!file.type.includes("jpeg") && !file.type.includes("jpg")){
+    alert("Please select JPG file only");
+    return;
+}
+
+let reader = new FileReader();
+
+reader.onload = function(e){
+
+    let img = new Image();
+    img.src = e.target.result;
+
+    img.onload = function(){
+
+        let canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        let ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+
+        // Better download method
+        canvas.toBlob(function(blob){
+            let link = document.createElement("a");
+            link.download = "converted.png";
+            link.href = URL.createObjectURL(blob);
+            link.click();
+        }, "image/png");
+
+    };
+};
+
+reader.readAsDataURL(file);
+}
+  
+// Resize Photo (Fixed)
 function resizePhoto(){
-let file=document.getElementById("resizeImage").files[0];
-let width=document.getElementById("resizeWidth").value;
-let height=document.getElementById("resizeHeight").value;
-let reader=new FileReader();
-reader.onload=function(e){
-let img=new Image();
-img.src=e.target.result;
-img.onload=function(){
-let canvas=document.createElement("canvas");
-canvas.width=width;
-canvas.height=height;
-let ctx=canvas.getContext("2d");
-ctx.drawImage(img,0,0,width,height);
-let link=document.createElement("a");
-link.download="resized.png";
-link.href=canvas.toDataURL();
-link.click();
-};
-};
-reader.readAsDataURL(file);
+
+let file = document.getElementById("resizeImage").files[0];
+let width = parseInt(document.getElementById("resizeWidth").value);
+let height = parseInt(document.getElementById("resizeHeight").value);
+
+if(!file){
+    alert("Please select image first");
+    return;
 }
 
+if(!width || !height){
+    alert("Enter valid width & height");
+    return;
+}
+
+let reader = new FileReader();
+
+reader.onload = function(e){
+
+    let img = new Image();
+    img.src = e.target.result;
+
+    img.onload = function(){
+
+        let canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+
+        let ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+
+        canvas.toBlob(function(blob){
+            let link = document.createElement("a");
+            link.download = "resized.png";
+            link.href = URL.createObjectURL(blob);
+            link.click();
+        }, "image/png");
+
+    };
+};
+
+reader.readAsDataURL(file);
+}
 // Word to Speech already above
 
 // CSV Export
@@ -848,5 +911,6 @@ alert("Loaded");
 
 </body>
 </html>
+
 
 
