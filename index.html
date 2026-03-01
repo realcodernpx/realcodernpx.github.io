@@ -10,7 +10,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <style>
 
@@ -285,7 +284,7 @@ margin-top:40px;
 <div class="dashboard-options">
 <a href="#converter">Converter</a>
 <a href="#login">Login</a>
-<a href="#course">Course</a>
+<a href="#courses">Course</a>
 <a href="#contact">Contact</a>
 </div>
 
@@ -718,22 +717,6 @@ pass+=chars.charAt(Math.floor(Math.random()*chars.length));
 document.getElementById("generatedPass").innerText=pass;
 }
 
-let canvas = document.createElement("canvas");
-canvas.width = img.width;
-canvas.height = img.height;
-
-let ctx = canvas.getContext("2d");
-ctx.drawImage(img, 0, 0);
-
-canvas.toBlob(function(blob){
-    let link = document.createElement("a");
-    link.download = "qr.png";
-    link.href = URL.createObjectURL(blob);
-    link.click();
-}, "image/png");
-
-}
-
 // Word Counter
 function countWords(){
 let text=document.getElementById("wordText").value;
@@ -785,6 +768,7 @@ alert("Loaded");
 
 </body>
 </html>
+
 
 
 
