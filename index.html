@@ -13,7 +13,6 @@
 
 <style>
 
-  
 /* RESET */
 *{margin:0;padding:0;box-sizing:border-box;}
 
@@ -45,13 +44,11 @@ moveText 5s ease-in-out infinite alternate,
 colorChange 12s linear infinite;
 }
 
-/* Move */
 @keyframes moveText{
 0%{transform:translateX(-15px);}
 100%{transform:translateX(15px);}
 }
 
-/* 7 Colours Auto Change */
 @keyframes colorChange{
 0%{color:red;}
 14%{color:orange;}
@@ -63,10 +60,12 @@ colorChange 12s linear infinite;
 100%{color:red;}
 }
 
-/* ===== DASHBOARD TIRANGA ===== */
+/* ===== DASHBOARD CENTER TIRANGA ===== */
 .dashboard-title{
 font-size:32px;
 font-weight:bold;
+text-align:center;
+margin-top:20px;
 background:linear-gradient(90deg,#FF9933,#ffffff,#138808);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
@@ -75,9 +74,32 @@ background:linear-gradient(90deg,#FF9933,#ffffff,#138808);
 .dashboard-line{
 height:4px;
 width:100%;
-margin-top:8px;
+max-width:300px;
+margin:10px auto 25px auto;
 background:linear-gradient(90deg,#FF9933,#ffffff,#138808);
 border-radius:5px;
+}
+
+/* ===== DASHBOARD OPTIONS (Converter Login Course Contact) ===== */
+.dashboard-options{
+text-align:center;
+background:transparent;
+margin-bottom:20px;
+}
+
+.dashboard-options a{
+display:inline-block;
+margin:15px 25px;
+font-size:18px;
+font-weight:600;
+text-decoration:none;
+color:#ffffff;
+transition:0.3s;
+}
+
+.dashboard-options a:hover{
+color:#66d9ff;
+text-shadow:0 0 10px rgba(0,200,255,0.8);
 }
 
 /* ===== NAV ===== */
@@ -88,7 +110,7 @@ background:transparent;
 }
 
 nav a{
-color:#66d9ff;   /* light blue */
+color:#66d9ff;
 margin:20px;
 text-decoration:none;
 font-weight:600;
@@ -246,7 +268,7 @@ margin-top:40px;
 }
 
 }
- 
+
 </style>
 </head>
 
@@ -259,13 +281,12 @@ margin-top:40px;
 <h2 class="dashboard-title">Dashboard</h2>
 <div class="dashboard-line"></div>
 
-<!-- Navigation Black Section -->
-<nav style="background:black; text-align:center; padding:10px;">
-    <a href="#converter" style="color:white; margin:0 15px; text-decoration:none;">Converter</a>
-    <a href="#login" style="color:white; margin:0 15px; text-decoration:none;">Login</a>
-    <a href="#courses" style="color:white; margin:0 15px; text-decoration:none;">Courses</a>
-    <a href="#contact" style="color:white; margin:0 15px; text-decoration:none;">Contact</a>
-</nav>
+<div class="dashboard-options">
+<a href="#converter">Converter</a>
+<a href="#login">Login</a>
+<a href="#course">Course</a>
+<a href="#contact">Contact</a>
+</div> 
 
 <section>
 <!-- CONVERTER -->
@@ -892,6 +913,7 @@ alert("Loaded");
 
 </body>
 </html>
+
 
 
 
