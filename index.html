@@ -318,32 +318,6 @@ margin-top:40px;
 <button onclick="splitPDF()">Split PDF</button>
 </div>
 
-<div class="tool-box">
-<h3>Image ➝ PDF</h3>
-<input type="file" id="imgToPdf" multiple>
-<button onclick="imageToPDF()">Convert</button>
-</div>
-
-<div class="tool-box">
-<h3>JPG ➝ PNG</h3>
-<input type="file" id="jpgFile">
-<button onclick="jpgToPng()">Convert</button>
-</div>
-
-<div class="tool-box">
-<h3>Photo Resize</h3>
-<input type="file" id="resizeImg">
-<input type="number" id="width" placeholder="Width">
-<input type="number" id="height" placeholder="Height">
-<button onclick="resizePhoto()">Resize</button>
-</div>
-
-<div class="tool-box">
-<h3>QR Code Generator</h3>
-<input type="text" id="qrText" placeholder="Enter Text">
-<button onclick="generateQR()">Generate QR</button>
-<div id="qrResult" style="margin-top:10px;"></div>
-</div>
 
 </div>
 </section>
@@ -744,16 +718,6 @@ pass+=chars.charAt(Math.floor(Math.random()*chars.length));
 document.getElementById("generatedPass").innerText=pass;
 }
 
-// QR Download
-function downloadQR(){
-
-let img = document.getElementById("qrImage");
-
-if(!img){
-    alert("Generate QR first");
-    return;
-}
-
 let canvas = document.createElement("canvas");
 canvas.width = img.width;
 canvas.height = img.height;
@@ -784,96 +748,6 @@ let speech=new SpeechSynthesisUtterance(text);
 speechSynthesis.speak(speech);
 }
 
-// JPG to PNG (Fixed)
-function jpgToPng(){
-
-let file = document.getElementById("jpgInput").files[0];
-
-if(!file){
-    alert("Please select JPG image first");
-    return;
-}
-
-if(!file.type.includes("jpeg") && !file.type.includes("jpg")){
-    alert("Please select JPG file only");
-    return;
-}
-
-let reader = new FileReader();
-
-reader.onload = function(e){
-
-    let img = new Image();
-    img.src = e.target.result;
-
-    img.onload = function(){
-
-        let canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-
-        let ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-
-        // Better download method
-        canvas.toBlob(function(blob){
-            let link = document.createElement("a");
-            link.download = "converted.png";
-            link.href = URL.createObjectURL(blob);
-            link.click();
-        }, "image/png");
-
-    };
-};
-
-reader.readAsDataURL(file);
-}
-  
-// Resize Photo (Fixed)
-function resizePhoto(){
-
-let file = document.getElementById("resizeImage").files[0];
-let width = parseInt(document.getElementById("resizeWidth").value);
-let height = parseInt(document.getElementById("resizeHeight").value);
-
-if(!file){
-    alert("Please select image first");
-    return;
-}
-
-if(!width || !height){
-    alert("Enter valid width & height");
-    return;
-}
-
-let reader = new FileReader();
-
-reader.onload = function(e){
-
-    let img = new Image();
-    img.src = e.target.result;
-
-    img.onload = function(){
-
-        let canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-
-        let ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, width, height);
-
-        canvas.toBlob(function(blob){
-            let link = document.createElement("a");
-            link.download = "resized.png";
-            link.href = URL.createObjectURL(blob);
-            link.click();
-        }, "image/png");
-
-    };
-};
-
-reader.readAsDataURL(file);
-}
 // Word to Speech already above
 
 // CSV Export
