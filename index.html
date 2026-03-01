@@ -33,37 +33,43 @@ text-align:center;
 padding:60px 20px;
 }
 
-/* Animated Clear Text */
+/* ===== ANIMATED HEADLINE ===== */
 .moving-text{
 font-size:60px;
 font-weight:900;
 letter-spacing:4px;
 display:inline-block;
+
+/* Gradient Text */
+background:linear-gradient(90deg,#00c6ff,#0072ff,#66d9ff,#00e0ff);
+background-size:300% 300%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+/* Animations */
 animation:
-moveText 2s infinite alternate ease-in-out,
-colorChange 4s infinite linear;
+moveText 5s ease-in-out infinite alternate,
+gradientFlow 10s ease infinite;
 }
 
-/* Left Right Move */
+/* Smooth Left Right Move */
 @keyframes moveText{
-from{transform:translateX(-30px);}
-to{transform:translateX(30px);}
+0%{transform:translateX(-15px);}
+100%{transform:translateX(15px);}
 }
 
-/* Light Blue Colour Change */
-@keyframes colorChange{
-0%{color:#00c6ff;}
-25%{color:#33ccff;}
-50%{color:#66d9ff;}
-75%{color:#99e6ff;}
-100%{color:#00e0ff;}
+/* Slow Colour Flow */
+@keyframes gradientFlow{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
 /* ===== NAV ===== */
 nav{
 text-align:center;
 padding:18px;
-background:rgba(0,80,150,0.25);
+background:rgba(255,255,255,0.05);
 backdrop-filter:blur(8px);
 }
 
@@ -72,16 +78,21 @@ color:#ffffff;
 margin:20px;
 text-decoration:none;
 font-weight:600;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#00c6ff;
 }
 
 /* ===== SECTION ===== */
 section{
 padding:50px 30px;
 margin:30px;
-background:rgba(0,100,180,0.25);
-backdrop-filter:blur(12px);
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(10px);
 border-radius:18px;
-box-shadow:0 0 30px rgba(0,170,255,0.4);
+box-shadow:0 0 30px rgba(0,170,255,0.25);
 }
 
 /* ===== TOOLS GRID ===== */
@@ -93,22 +104,22 @@ margin-top:20px;
 }
 
 .tool-box{
-background:rgba(0,120,200,0.25);
+background:rgba(255,255,255,0.08);
 padding:20px;
 border-radius:15px;
-box-shadow:0 0 20px rgba(0,170,255,0.4);
+box-shadow:0 0 20px rgba(0,170,255,0.2);
 transition:0.3s;
 }
 
 .tool-box:hover{
 transform:translateY(-5px);
-box-shadow:0 0 30px rgba(0,200,255,0.7);
+box-shadow:0 0 25px rgba(0,170,255,0.5);
 }
 
 .tool-box h3{
 margin-bottom:10px;
 font-size:18px;
-color:#b3ecff;
+color:#ffffff;
 }
 
 .tool-box input{
@@ -117,19 +128,28 @@ padding:10px;
 margin-bottom:8px;
 border:none;
 border-radius:8px;
-background:rgba(255,255,255,0.15);
+background:rgba(255,255,255,0.1);
 color:white;
 }
 
-.tool-box button{
+/* ===== BUTTONS BLUE ONLY ===== */
+.tool-box button,
+button{
+padding:12px;
 width:100%;
-padding:10px;
 border:none;
 border-radius:8px;
 background:linear-gradient(90deg,#00c6ff,#0072ff);
 color:white;
 font-weight:bold;
 cursor:pointer;
+margin-top:10px;
+transition:0.3s;
+}
+
+.tool-box button:hover,
+button:hover{
+transform:scale(1.05);
 }
 
 /* ===== LOGIN */
@@ -141,20 +161,8 @@ padding:12px;
 margin:10px 0;
 border:none;
 border-radius:8px;
-background:rgba(255,255,255,0.15);
+background:rgba(255,255,255,0.1);
 color:white;
-}
-
-button{
-padding:12px;
-width:100%;
-border:none;
-border-radius:8px;
-background:linear-gradient(90deg,#00c6ff,#0072ff);
-color:white;
-font-weight:bold;
-cursor:pointer;
-margin-top:10px;
 }
 
 /* ===== COURSE ===== */
@@ -165,6 +173,12 @@ margin:12px;
 border-radius:8px;
 cursor:pointer;
 text-align:center;
+transition:0.3s;
+}
+
+.course-box:hover{
+border-color:#00c6ff;
+color:#00c6ff;
 }
 
 /* ===== FOOTER ===== */
@@ -228,7 +242,7 @@ margin-top:40px;
 }
 
 }
-  
+ 
 </style>
 </head>
 
@@ -876,6 +890,7 @@ alert("Loaded");
 
 </body>
 </html>
+
 
 
 
