@@ -269,123 +269,344 @@ margin-top:40px;
 
 }
 
+
 </style>
 </head>
 
-<body>
-  
+<body> 
+
 <header class="main-header">
-<h1 class="moving-text">THE REAL CODER X</h1>
+    <h1 class="moving-text">THE REAL CODER X</h1>
 </header>
 
-<!-- ===== SAME HTML BODY (UNCHANGED STRUCTURE) ===== -->
+<h2 class="dashboard-title">Dashboard</h2>
+<div class="dashboard-line"></div>
 
-<!-- KEEP YOUR ENTIRE HTML EXACT SAME FROM YOUR ORIGINAL CODE -->
-<!-- ONLY SCRIPT BELOW UPDATED -->
+<div class="dashboard-options">
+<a href="#converter">Converter</a>
+<a href="#login">Login</a>
+<a href="#course">Course</a>
+<a href="#contact">Contact</a>
+</div>
+
+<section>
+<!-- CONVERTER -->
+<section id="converter">
+<h2>File Converter Tools</h2>
+<div class="login-box">
+<h3>Image to PDF</h3>
+<input type="file" id="imageInput" accept="image/*">
+<button onclick="convertImageToPDF()">Convert & Download PDF</button>
+<hr style="margin:25px 0; border:1px solid rgba(255,255,255,0.2);">
+<h3>Excel to PDF</h3>
+<input type="file" id="excelInput" accept=".xlsx,.xls">
+<button onclick="convertExcelToPDF()">Convert & Download PDF</button>
+</div>
+</section>
+
+<div class="tools-grid">
+
+<div class="tool-box">
+<h3>PDF Merge</h3>
+<input type="file" id="mergeFiles" multiple>
+<button onclick="mergePDF()">Merge PDF</button>
+</div>
+
+<div class="tool-box">
+<h3>PDF Split</h3>
+<input type="file" id="splitFile">
+<button onclick="splitPDF()">Split PDF</button>
+</div>
+
+<div class="tool-box">
+<h3>Image ➝ PDF</h3>
+<input type="file" id="imgToPdf" multiple>
+<button onclick="imageToPDF()">Convert</button>
+</div>
+
+<div class="tool-box">
+<h3>JPG ➝ PNG</h3>
+<input type="file" id="jpgFile">
+<button onclick="jpgToPng()">Convert</button>
+</div>
+
+<div class="tool-box">
+<h3>Photo Resize</h3>
+<input type="file" id="resizeImg">
+<input type="number" id="width" placeholder="Width">
+<input type="number" id="height" placeholder="Height">
+<button onclick="resizePhoto()">Resize</button>
+</div>
+
+<div class="tool-box">
+<h3>QR Code Generator</h3>
+<input type="text" id="qrText" placeholder="Enter Text">
+<button onclick="generateQR()">Generate QR</button>
+<div id="qrResult" style="margin-top:10px;"></div>
+</div>
+
+</div>
+</section>
+
+
+
+<!-- SELF EXCEL SHEET -->
+<section id="selfsheet">
+<h2>Self Excel Practice Sheet</h2>
+
+<div style="overflow:auto;">
+
+<table id="excelTable" border="1" style="width:100%; text-align:center; border-collapse:collapse; background:rgba(255,255,255,0.05);">
+
+<thead>
+<tr>
+<th contenteditable="true">LINE 1</th>
+<th contenteditable="true">LINE 2</th>
+<th contenteditable="true">LINE 3</th>
+<th contenteditable="true">LINE 4</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr>
+
+<tr>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr>
+
+<tr>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr>
+</tbody>
+
+</table>
+
+</div>
+
+<button onclick="addRow()">Add Row</button>
+<button onclick="downloadExcel()">Download Excel File</button>
+
+</section>
+
+
+
+<header>LOGIN & CONTACT</header>
+
+
+<!-- LOGIN -->
+<section id="login">
+<h2>Login System</h2>
+<div class="login-box">
+<select id="gender">
+<option value="">Gender</option>
+<option>Male</option>
+<option>Female</option>
+</select>
+<select id="state">
+<option value="">Select State</option>
+<option>Uttar Pradesh</option>
+<option>Delhi</option>
+<option>Haryana</option>
+<option>Bihar</option>
+</select>
+<input type="email" id="email" placeholder="Enter Gmail">
+<button onclick="sendOTP()">Send OTP</button>
+
+<div id="otpBox" style="display:none;">
+<input type="text" id="otpInput" placeholder="Enter OTP">
+<input type="hidden" id="generatedOTP">
+<button onclick="verifyOTP()">Verify OTP</button>
+</div>
+</div>
+</section>
+
+<!-- COURSES -->
+<section id="courses" style="display:none;">
+<h2>Available Courses</h2>
+<div class="course-box" onclick="showCourse('excel')">Excel</div>
+<div class="course-box" onclick="showCourse('basic')">Basic Computer</div>
+<div class="course-box" onclick="showCourse('advance')">Advance Excel</div>
+<div class="course-box" onclick="showCourse('sql')">SQL</div>
+<div class="course-box" onclick="showCourse('python')">Python</div>
+<div class="course-box" onclick="showCourse('web')">HTML CSS JS</div>
+<div id="courseDetails" style="margin-top:30px;"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>Contact Me</h2>
+<div class="login-box">
+<button onclick="openWhatsApp()">Chat on WhatsApp</button>
+
+<a href="https://instagram.com/therealcoderx" target="_blank">
+<button>Instagram - therealcoderx</button>
+</a>
+
+<a href="https://youtube.com/@therealcoderx" target="_blank">
+<button>YouTube - @therealcoderx</button>
+</a>
+
+<a href="mailto:therealcoderx.html@gmail.com">
+<button>Email Me</button>
+</a>
+</div>
+</section>
+
+<footer>
+© 2026 THE REAL CODER X | All Rights Reserved
+</footer>
+
 
 <script>
-
-/* ================= PDF MERGE ================= */
 async function mergePDF(){
 const { PDFDocument } = PDFLib;
-const files=document.getElementById('mergeFiles').files;
-if(files.length<2) return alert("Select at least 2 PDFs");
-const merged=await PDFDocument.create();
+const files = document.getElementById('mergeFiles').files;
+if(files.length < 2) return alert("Select at least 2 PDFs");
+
+const mergedPdf = await PDFDocument.create();
+
 for(let file of files){
-const bytes=await file.arrayBuffer();
-const pdf=await PDFDocument.load(bytes);
-const pages=await merged.copyPages(pdf,pdf.getPageIndices());
-pages.forEach(p=>merged.addPage(p));
-}
-downloadFile(await merged.save(),"merged.pdf","application/pdf");
+const bytes = await file.arrayBuffer();
+const pdf = await PDFDocument.load(bytes);
+const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+pages.forEach(page => mergedPdf.addPage(page));
 }
 
-/* ================= PDF SPLIT ================= */
+const mergedBytes = await mergedPdf.save();
+downloadFile(mergedBytes, "merged.pdf", "application/pdf");
+}
+
 async function splitPDF(){
-const { PDFDocument }=PDFLib;
-const file=document.getElementById('splitFile').files[0];
+const { PDFDocument } = PDFLib;
+const file = document.getElementById('splitFile').files[0];
 if(!file) return alert("Select PDF");
-const bytes=await file.arrayBuffer();
-const pdf=await PDFDocument.load(bytes);
-for(let i=0;i<pdf.getPageCount();i++){
-const newPdf=await PDFDocument.create();
-const [page]=await newPdf.copyPages(pdf,[i]);
+
+const bytes = await file.arrayBuffer();
+const pdf = await PDFDocument.load(bytes);
+const totalPages = pdf.getPageCount();
+
+for(let i=0;i<totalPages;i++){
+const newPdf = await PDFDocument.create();
+const [page] = await newPdf.copyPages(pdf, [i]);
 newPdf.addPage(page);
-downloadFile(await newPdf.save(),`page_${i+1}.pdf`,"application/pdf");
+const newBytes = await newPdf.save();
+downloadFile(newBytes, `page_${i+1}.pdf`, "application/pdf");
 }
 }
 
-/* ================= IMAGE TO PDF ================= */
 function imageToPDF(){
-const { jsPDF }=window.jspdf;
-const files=document.getElementById('imgToPdf').files;
+const { jsPDF } = window.jspdf;
+const files = document.getElementById('imgToPdf').files;
 if(!files.length) return alert("Select images");
-const pdf=new jsPDF();
-Array.from(files).forEach((file,i)=>{
-const reader=new FileReader();
-reader.onload=e=>{
+
+const pdf = new jsPDF();
+
+Array.from(files).forEach((file, i)=>{
+const reader = new FileReader();
+reader.onload = function(e){
 if(i>0) pdf.addPage();
-pdf.addImage(e.target.result,'JPEG',10,10,180,160);
-if(i===files.length-1) pdf.save("images.pdf");
-};
+pdf.addImage(e.target.result, 'JPEG', 10, 10, 180, 160);
+if(i === files.length-1) pdf.save("images.pdf");
+}
 reader.readAsDataURL(file);
 });
 }
 
-/* ================= JPG TO PNG ================= */
 function jpgToPng(){
-const file=document.getElementById('jpgFile').files[0];
+const file = document.getElementById('jpgFile').files[0];
 if(!file) return alert("Select JPG");
-const reader=new FileReader();
-reader.onload=e=>{
-const img=new Image();
-img.src=e.target.result;
-img.onload=()=>{
-const canvas=document.createElement("canvas");
-canvas.width=img.width;
-canvas.height=img.height;
-canvas.getContext("2d").drawImage(img,0,0);
-canvas.toBlob(blob=>downloadFile(blob,"converted.png","image/png"));
-};
-};
+
+const img = new Image();
+const reader = new FileReader();
+reader.onload = function(e){
+img.onload = function(){
+const canvas = document.createElement('canvas');
+canvas.width = img.width;
+canvas.height = img.height;
+canvas.getContext('2d').drawImage(img,0,0);
+canvas.toBlob(blob=>{
+downloadFile(blob,"converted.png","image/png");
+});
+}
+img.src = e.target.result;
+}
 reader.readAsDataURL(file);
 }
 
-/* ================= RESIZE ================= */
 function resizePhoto(){
-const file=document.getElementById('resizeImg').files[0];
-const width=document.getElementById('width').value;
-const height=document.getElementById('height').value;
-if(!file||!width||!height) return alert("Fill all fields");
-const reader=new FileReader();
-reader.onload=e=>{
-const img=new Image();
-img.src=e.target.result;
-img.onload=()=>{
-const canvas=document.createElement("canvas");
-canvas.width=width;
-canvas.height=height;
-canvas.getContext("2d").drawImage(img,0,0,width,height);
-canvas.toBlob(blob=>downloadFile(blob,"resized.png","image/png"));
-};
-};
+const file = document.getElementById('resizeImg').files[0];
+const width = document.getElementById('width').value;
+const height = document.getElementById('height').value;
+if(!file || !width || !height) return alert("Fill all fields");
+
+const img = new Image();
+const reader = new FileReader();
+reader.onload = function(e){
+img.onload = function(){
+const canvas = document.createElement('canvas');
+canvas.width = width;
+canvas.height = height;
+canvas.getContext('2d').drawImage(img,0,0,width,height);
+canvas.toBlob(blob=>{
+downloadFile(blob,"resized.png","image/png");
+});
+}
+img.src = e.target.result;
+}
 reader.readAsDataURL(file);
 }
 
-/* ================= QR ================= */
 function generateQR(){
-const text=document.getElementById("qrText").value;
+const text = document.getElementById("qrText").value;
 if(!text) return alert("Enter text");
 document.getElementById("qrResult").innerHTML="";
-new QRCode(document.getElementById("qrResult"),text);
+new QRCode(document.getElementById("qrResult"), text);
 }
 
-/* ================= EXCEL TO PDF ================= */
+function downloadFile(data, filename, type){
+const blob = new Blob([data], {type});
+const link = document.createElement('a');
+link.href = URL.createObjectURL(blob);
+link.download = filename;
+link.click();
+}
+
+// WhatsApp
+function openWhatsApp(){
+window.open("https://wa.me/917037870518","_blank");
+}
+
+// Image to PDF
+async function convertImageToPDF(){
+const file=document.getElementById("imageInput").files[0];
+if(!file){alert("Select image first");return;}
+const { jsPDF }=window.jspdf;
+const pdf=new jsPDF();
+const reader=new FileReader();
+reader.onload=function(e){
+pdf.addImage(e.target.result,'JPEG',10,10,180,160);
+pdf.save("image.pdf");
+};
+reader.readAsDataURL(file);
+}
+
+// Excel to PDF
 function convertExcelToPDF(){
 const file=document.getElementById("excelInput").files[0];
-if(!file) return alert("Select Excel file first");
+if(!file){alert("Select Excel file first");return;}
 const reader=new FileReader();
-reader.onload=e=>{
+reader.onload=function(e){
 const data=new Uint8Array(e.target.result);
 const workbook=XLSX.read(data,{type:'array'});
 const sheet=workbook.Sheets[workbook.SheetNames[0]];
@@ -402,52 +623,279 @@ pdf.save("excel.pdf");
 reader.readAsArrayBuffer(file);
 }
 
-/* ================= ADD ROW FIXED ================= */
-function addRow(){
-let table=document.getElementById("excelTable").getElementsByTagName('tbody')[0];
-let newRow=table.insertRow();
-for(let i=0;i<8;i++){   // ✅ FIXED 8 COLUMNS
-let cell=newRow.insertCell(i);
-cell.contentEditable="true";
+// OTP
+function generateOTP(){
+return Math.floor(100000+Math.random()*900000);
 }
-}
-
-/* ================= DOWNLOAD EXCEL ================= */
-function downloadExcel(){
-let table=document.getElementById("excelTable");
-let wb=XLSX.utils.table_to_book(table,{sheet:"Sheet1"});
-XLSX.writeFile(wb,"Self_Excel_Sheet.xlsx");
-}
-
-/* ================= OTP ================= */
-function generateOTP(){return Math.floor(100000+Math.random()*900000);}
 function sendOTP(){
 const email=document.getElementById("email").value;
-if(!email) return alert("Enter Gmail");
+if(!email){alert("Enter Gmail");return;}
 const otp=generateOTP();
 document.getElementById("generatedOTP").value=otp;
 alert("Your OTP: "+otp);
 document.getElementById("otpBox").style.display="block";
 }
 function verifyOTP(){
-if(document.getElementById("otpInput").value==
-document.getElementById("generatedOTP").value){
+const entered=document.getElementById("otpInput").value;
+const generated=document.getElementById("generatedOTP").value;
+if(entered==generated){
 alert("Login Successful!");
 document.getElementById("courses").style.display="block";
 document.getElementById("otpBox").style.display="none";
-}else alert("Wrong OTP");
+}else{
+alert("Wrong OTP");
+}
 }
 
-/* ================= COMMON DOWNLOAD ================= */
-function downloadFile(data,filename,type){
-const blob=new Blob([data],{type});
-const link=document.createElement("a");
+// Course Details
+const courseData = {
+
+excel:{
+title:"EXCEL",
+salary:"₹25,000 – ₹80,000 / Month",
+jobs:"Data Analyst, MIS Executive, Office Admin",
+formulas:[
+"SUM()", "AVERAGE()", "IF()", "VLOOKUP()", "HLOOKUP()", 
+"XLOOKUP()", "COUNT()", "COUNTA()", "COUNTIF()", "COUNTIFS()",
+"SUMIF()", "SUMIFS()", "INDEX()", "MATCH()", "LEFT()",
+"RIGHT()", "MID()", "LEN()", "TRIM()", "ROUND()"
+]
+},
+
+basic:{
+title:"BASIC COMPUTER",
+salary:"₹12,000 – ₹25,000 / Month",
+jobs:"Computer Operator, Office Assistant",
+formulas:[
+"MS Word Formatting", "Excel Basics", "PowerPoint Slides",
+"File Management", "Internet Usage", "Typing Skills"
+]
+},
+
+advance:{
+title:"ADVANCE EXCEL",
+salary:"₹40,000 – ₹1,20,000 / Month",
+jobs:"Business Analyst, Financial Analyst",
+formulas:[
+"Pivot Table", "Macros", "VBA", "Power Query",
+"Dashboard Creation", "Data Modeling"
+]
+},
+
+sql:{
+title:"SQL",
+salary:"₹35,000 – ₹1,50,000 / Month",
+jobs:"Database Developer, Data Engineer",
+formulas:[
+"SELECT", "WHERE", "JOIN", "GROUP BY",
+"HAVING", "ORDER BY", "INSERT", "UPDATE", "DELETE"
+]
+},
+
+python:{
+title:"PYTHON",
+salary:"₹40,000 – ₹2,00,000 / Month",
+jobs:"Python Developer, AI Engineer, Data Scientist",
+formulas:[
+"print()", "if-else", "for loop", "while loop",
+"list()", "dict()", "functions", "classes",
+"pandas", "numpy"
+]
+},
+
+web:{
+title:"HTML CSS JS",
+salary:"₹30,000 – ₹1,50,000 / Month",
+jobs:"Web Developer, Frontend Developer",
+formulas:[
+"<html>", "<div>", "<form>", "CSS Flexbox",
+"CSS Grid", "JavaScript DOM",
+"Event Listener", "API Fetch"
+]
+}
+
+};
+
+
+// Show Course
+function showCourse(name){
+
+let course = courseData[name];
+
+let formulaList = "";
+
+course.formulas.forEach(f=>{
+formulaList += `
+<div style="display:flex;justify-content:space-between;align-items:center;margin:8px 0;">
+<span>${f}</span>
+<span class="icon" onclick="toggleDetails(this)">➕</span>
+</div>
+<div class="extraDetails" style="display:none;font-size:14px;color:#ccc;margin-bottom:10px;">
+Detailed explanation of ${f}. Practical examples included. High demand skill.
+</div>
+`;
+});
+
+document.getElementById("courseDetails").innerHTML = `
+<h3>${course.title} Full Details</h3>
+
+<h4>Top Formulas / Topics:</h4>
+${formulaList}
+
+<h4 style="margin-top:20px;">💼 Jobs:</h4>
+<p>${course.jobs}</p>
+
+<h4 style="margin-top:15px;">💰 Salary:</h4>
+<p>${course.salary}</p>
+`;
+}
+
+
+// Toggle More Details
+function toggleDetails(icon){
+let details = icon.parentElement.nextElementSibling;
+
+if(details.style.display === "none"){
+details.style.display = "block";
+icon.innerHTML = "➖";
+icon.style.transform = "rotate(360deg)";
+icon.style.transition = "0.4s";
+}else{
+details.style.display = "none";
+icon.innerHTML = "➕";
+}
+}
+// Add New Row
+function addRow(){
+let table = document.getElementById("excelTable").getElementsByTagName('tbody')[0];
+let newRow = table.insertRow();
+
+for(let i=0; i<4; i++){
+let cell = newRow.insertCell(i);
+cell.contentEditable = "true";
+}
+}
+
+
+// Download Excel
+function downloadExcel(){
+
+let table = document.getElementById("excelTable");
+let wb = XLSX.utils.table_to_book(table, {sheet:"Sheet1"});
+XLSX.writeFile(wb, "Self_Excel_Sheet.xlsx");
+
+}
+// Password Generator
+function generatePassword(){
+let chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$";
+let pass="";
+for(let i=0;i<10;i++){
+pass+=chars.charAt(Math.floor(Math.random()*chars.length));
+}
+document.getElementById("generatedPass").innerText=pass;
+}
+
+// QR Generator
+function generateQR(){
+let text=document.getElementById("qrText").value;
+document.getElementById("qrResult").innerHTML=
+`<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text}">`;
+}
+
+// Word Counter
+function countWords(){
+let text=document.getElementById("wordText").value;
+let words=text.trim().split(/\s+/).length;
+document.getElementById("wordResult").innerText="Words: "+words;
+}
+
+// Text To Speech
+function speakText(){
+let text=document.getElementById("wordText").value;
+let speech=new SpeechSynthesisUtterance(text);
+speechSynthesis.speak(speech);
+}
+
+// JPG to PNG
+function jpgToPng(){
+let file=document.getElementById("jpgInput").files[0];
+let reader=new FileReader();
+reader.onload=function(e){
+let img=new Image();
+img.src=e.target.result;
+img.onload=function(){
+let canvas=document.createElement("canvas");
+canvas.width=img.width;
+canvas.height=img.height;
+let ctx=canvas.getContext("2d");
+ctx.drawImage(img,0,0);
+let link=document.createElement("a");
+link.download="converted.png";
+link.href=canvas.toDataURL("image/png");
+link.click();
+};
+};
+reader.readAsDataURL(file);
+}
+
+// Resize Photo
+function resizePhoto(){
+let file=document.getElementById("resizeImage").files[0];
+let width=document.getElementById("resizeWidth").value;
+let height=document.getElementById("resizeHeight").value;
+let reader=new FileReader();
+reader.onload=function(e){
+let img=new Image();
+img.src=e.target.result;
+img.onload=function(){
+let canvas=document.createElement("canvas");
+canvas.width=width;
+canvas.height=height;
+let ctx=canvas.getContext("2d");
+ctx.drawImage(img,0,0,width,height);
+let link=document.createElement("a");
+link.download="resized.png";
+link.href=canvas.toDataURL();
+link.click();
+};
+};
+reader.readAsDataURL(file);
+}
+
+// Word to Speech already above
+
+// CSV Export
+function exportCSV(){
+let table=document.getElementById("excelTable");
+let rows=table.querySelectorAll("tr");
+let csv=[];
+rows.forEach(row=>{
+let cols=row.querySelectorAll("td,th");
+let rowData=[];
+cols.forEach(col=>rowData.push(col.innerText));
+csv.push(rowData.join(","));
+});
+let blob=new Blob([csv.join("\n")],{type:"text/csv"});
+let link=document.createElement("a");
 link.href=URL.createObjectURL(blob);
-link.download=filename;
+link.download="sheet.csv";
 link.click();
 }
 
-</script>
+// Local Save
+function saveLocal(){
+localStorage.setItem("sheetData",document.getElementById("excelTable").innerHTML);
+alert("Saved in Browser");
+}
+
+function loadLocal(){
+let data=localStorage.getItem("sheetData");
+if(data){
+document.getElementById("excelTable").innerHTML=data;
+alert("Loaded");
+}
+}
+
 
 </body>
 </html>
